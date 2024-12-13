@@ -1,7 +1,18 @@
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
+from fastapi.middleware.cors import CORSMiddleware
+
+
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"], 
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 EXCHANGE_RATES = {
     "USD": {"EUR": 0.9, "INR": 83.0, "JPY": 110.0, "NPR": 133.0},
